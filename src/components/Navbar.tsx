@@ -3,7 +3,7 @@ import logo from "./../../public/logo2.jpeg"
 
 const Navbar = () => {
   return (
-    <div className="navbar flex px-5 rounded-2xl justify-between mt-5 max-sm:mt-0 sticky gap-5 items-center bg-base-200 w-[90%] max-sm:w-full max-sm:rounded-none m-auto ">
+    <div className="navbar flex px-5 rounded-2xl justify-between mt-5 max-sm:mt-0 sticky top-0 gap-5 items-center bg-base-200 w-[90%] max-sm:w-full max-sm:rounded-none m-auto ">
       <div className="">
         <Image
           alt="MM-logo"
