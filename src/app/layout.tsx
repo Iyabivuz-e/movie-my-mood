@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Movie } from "../../contextAPI/Movie-Context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,18 +27,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/public/favicon.ico" />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar />
-        {/* <ThemeCollector /> */}
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <Movie>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/public/favicon.ico" />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <Navbar />
+          {/* <ThemeCollector /> */}
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </Movie>
   );
 }
