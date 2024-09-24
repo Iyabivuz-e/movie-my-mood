@@ -1,7 +1,20 @@
+"use client"
+
 import Image from 'next/image';
 import logo from "./../../public/logo2.jpeg"
+import { useState } from 'react';
+import { moods } from '../../helpers/Moods';
+
 
 const Navbar = () => {
+
+  const [ inputValue, setInputValue ] = useState("")
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    moods.filter(mood => mood.name === value);
+    setInputValue(e.target.value)
+  };
   return (
     <div className="navbar flex px-5 rounded-2xl justify-between mt-5 max-sm:mt-0 sticky top-0 gap-5 items-center bg-base-200 w-[90%] max-sm:w-full max-sm:rounded-none m-auto ">
       <div className="">
@@ -20,7 +33,10 @@ const Navbar = () => {
             type="text"
             placeholder="Search your mood"
             className="input max-sm:w-40 input-bordered w-48 "
+            value={inputValue}
+            onChange={handleSearch}
           />
+          {inputValue}
         </div>
         {/* <div className="dropdown dropdown-end">
           <div
