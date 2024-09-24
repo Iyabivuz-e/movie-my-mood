@@ -8,7 +8,7 @@ const Navbar = () => {
         <Image
           alt="MM-logo"
           src={logo}
-          className="w-[60px] h-[60px] rounded-full"
+          className="w-[50px] h-[50px] rounded-full"
         />
       </div>
       <div className="input-bordered max-sm:hidden btn -py-3 btn-xs sm:btn-sm md:btn-md lg:btn-lg">
