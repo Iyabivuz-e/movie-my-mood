@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logo from "./../../public/my-logo.webp"
+import logo from "./../../public/logo2.jpeg"
 
 const Navbar = () => {
   return (
@@ -8,7 +8,7 @@ const Navbar = () => {
         <Image
           alt="MM-logo"
           src={logo}
-          className="w-[50px] h-[50px] rounded-full"
+          className="w-[60px] h-[60px] rounded-full"
         />
       </div>
       <div className="input-bordered max-sm:hidden btn -py-3 btn-xs sm:btn-sm md:btn-md lg:btn-lg">

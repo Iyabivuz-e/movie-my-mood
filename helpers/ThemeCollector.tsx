@@ -1,10 +1,9 @@
 import React from "react";
 
-const ThemeCollector: React.FC = () => {
+const ThemeCollector = () => {
   return (
-    <div className="fixed right-0 top-1/2 transform -translate-y-1/2 p-2 z-50">
-      <label className="flex cursor-pointer gap-2">
-        {/* Light mode icon */}
+    <div className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-yellow-500 p-2">
+      <label className="flex cursor-pointer gap-2 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -19,15 +18,11 @@ const ThemeCollector: React.FC = () => {
           <circle cx="12" cy="12" r="5" />
           <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
         </svg>
-
-        {/* Theme toggle switch */}
         <input
           type="checkbox"
           value="synthwave"
           className="toggle theme-controller"
         />
-
-        {/* Dark mode icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
