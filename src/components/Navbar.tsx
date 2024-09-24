@@ -16,8 +16,8 @@ const Navbar = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
-    if(movieContext?.searchedFunction){
-      movieContext.searchedFunction(value)
+    if (movieContext?.searchedFunction) {
+      movieContext.searchedFunction(value);
     }
   };
   return (
@@ -42,7 +42,6 @@ const Navbar = () => {
             value={inputValue}
             onChange={handleSearch}
           />
-          {inputValue}
         </div>
         {/* <div className="dropdown dropdown-end">
           <div

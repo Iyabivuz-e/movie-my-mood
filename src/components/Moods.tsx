@@ -1,8 +1,11 @@
+"use client";
+
 import React, { useContext } from "react";
 import Link from "next/link";
 import { MovieContext } from "../../contextAPI/Movie-Context";
 
 const Moods = () => {
+
   const movieContext = useContext(MovieContext);
 
   // Check if movieContext is null or searchMoods is undefined
@@ -11,12 +14,11 @@ const Moods = () => {
   }
 
   const { searchMoods } = movieContext;
-  console.log(searchMoods)
 
   return (
     <>
       <h1 className="text-center mt-5">What is your mood now?&#x1f914; </h1>
-      <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-5 w-[80%] max-sm:w-[90%] m-auto items-center mt-8">
+      <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-5 w-[80%] max-sm:w-[90%] m-auto justify-center items-center mt-8">
         {searchMoods.length > 0 ? (
           searchMoods.map((mood) => (
             <Link
@@ -28,7 +30,7 @@ const Moods = () => {
             </Link>
           ))
         ) : (
-          <p>No moods found!</p>
+          <button className="btn btn-error bg-orange-400 ">Oops!! Your mood is not found!</button>
         )}
       </div>
     </>
