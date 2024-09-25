@@ -2,26 +2,22 @@
 
 import Image from 'next/image';
 import logo from "./../../public/logo2.jpeg"
-import { useContext, useState } from 'react';
-// import { moods } from '../../helpers/Moods';
+import { useContext } from 'react';
 import { MovieContext } from '../../contextAPI/Movie-Context';
+// import {  useState } from 'react';
+// import { moods } from '../../helpers/Moods';
+// import { MovieContext } from '../../contextAPI/Movie-Context';
 
 
 const Navbar = () => {
+  const { inputValue, setInputValue } = useContext(MovieContext);
 
-  const [ inputValue, setInputValue ] = useState("")
-  const movieContext = useContext(MovieContext);
-
-  //Filtering the search input 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setInputValue(value);
-    if (movieContext?.searchedFunction) {
-      movieContext.searchedFunction(value);
-    }
+    setInputValue(value); 
   };
+
   return (
-    
     <div className="navbar flex px-5 rounded-2xl justify-between mt-5 max-sm:mt-0 sticky top-0 gap-5 items-center bg-base-200 w-[90%] max-sm:w-full max-sm:rounded-none m-auto ">
       <div className="">
         <Image

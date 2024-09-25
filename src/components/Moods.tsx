@@ -5,32 +5,34 @@ import Link from "next/link";
 import { MovieContext } from "../../contextAPI/Movie-Context";
 
 const Moods = () => {
+  const { genres, filteredGenres } = useContext(MovieContext);
 
-  const movieContext = useContext(MovieContext);
+  if (!genres) return null; // Handle null or undefined case
 
-  // Check if movieContext is null or searchMoods is undefined
-  if (!movieContext || !movieContext.searchMoods) {
-    return <p>Loading moods...</p>; // Handle the case where context is not available
+  if (genres.length === 0) {
+    return <p>Loading moods...</p>; // Handle loading state
   }
 
-  const { searchMoods } = movieContext;
+  // Remove the duplicate filteredGenres calculation
 
   return (
     <>
-      <h1 className="text-center mt-5">What is your mood now?&#x1f914; </h1>
+      <h1 className="text-center mt-5">What is your mood now?&#x1f914;</h1>
       <div className="grid grid-cols-4 max-sm:grid-cols-2 gap-5 w-[80%] max-sm:w-[90%] m-auto justify-center items-center mt-8">
-        {searchMoods.length > 0 ? (
-          searchMoods.map((mood) => (
+        {filteredGenres.length > 0 ? (
+          filteredGenres.map((mood) => (
             <Link
               href="/"
               key={mood.id}
-              className="btn text-lg px-5 bg-base-200 btn-active"
+              className="btn text-lg max-sm:text-sm max-md:text-sm bg-base-200 btn-active"
             >
               {mood.name}
             </Link>
           ))
         ) : (
-          <button className="btn btn-error bg-orange-400 ">Oops!! Your mood is not found!</button>
+          <button className="btn btn-error bg-orange-400">
+            Oops!! Your mood is not found!
+          </button>
         )}
       </div>
     </>
