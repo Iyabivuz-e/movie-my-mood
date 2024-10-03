@@ -36,7 +36,7 @@ const MyMovies = ({ params }: { params: { id: string } }) => {
         Movies Based on Selected Mood
       </h1>
       <div className="mt-8 px-3 flex gap-5 flex-wrap justify-center items-center">
-        <div className="grid grid-cols-3 -z-30 max-sm:grid-cols-2 gap-5 w-[80%] max-sm:w-[90%] m-auto justify-center items-center mt-8">
+        <div className="grid grid-cols-3 -z-30 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5 w-full m-auto justify-center items-center mt-8">
           {filteredMovies.map((movie) => (
             <div key={movie.id} className="card bg-red-500">
               <Image
