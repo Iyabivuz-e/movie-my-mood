@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Movie } from "../../contextAPI/Movie-Context";
+import ThemeCollector from "../../helpers/ThemeCollector";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,7 +38,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <Navbar />
-          {/* <ThemeCollector /> */}
+          <ThemeCollector />
           {children}
           <Footer />
         </body>
