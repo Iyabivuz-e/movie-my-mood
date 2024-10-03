@@ -4,9 +4,7 @@ import Image from 'next/image';
 import logo from "./../../public/logo2.jpeg"
 import { useContext } from 'react';
 import { MovieContext } from '../../contextAPI/Movie-Context';
-// import {  useState } from 'react';
-// import { moods } from '../../helpers/Moods';
-// import { MovieContext } from '../../contextAPI/Movie-Context';
+import Link from 'next/link';
 
 
 const Navbar = () => {
@@ -26,9 +24,9 @@ const Navbar = () => {
           className="w-[60px] h-[60px] rounded-full"
         />
       </div>
-      <div className="input-bordered max-sm:hidden btn -py-3 btn-xs sm:btn-sm md:btn-md lg:btn-lg">
+      <Link href="/" className="input-bordered max-sm:hidden btn -py-3 btn-xs sm:btn-sm md:btn-md lg:btn-lg">
         MovieMyMood
-      </div>
+      </Link>
       <div className="flex-none gap-2">
         <div className="form-control">
           <input
