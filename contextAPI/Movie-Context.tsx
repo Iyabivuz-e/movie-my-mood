@@ -138,6 +138,29 @@ export const Movie = ({ children }: { children: React.ReactNode }) => {
   const [allMovies, setAllMovies] = useState<Movies[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredMovies, setFilteredMovies] = useState<Movies[]>([]);
+    const [isLoadingMovies, setIsLoadingMovies] = useState(true);
+
+
+  //Retrieve the filtered movies from the local storage when the component is loaded
+  // useEffect(() => {
+  //   const savedFilteredMovies = localStorage.getItem("filteredMovies");
+  //   if (savedFilteredMovies) {
+  //     const parsedFilteredMovies = JSON.parse(savedFilteredMovies);
+  //     setFilteredMovies(parsedFilteredMovies);
+  //     // Also update the allMovies state to reflect the filtered movies
+  //     setAllMovies(parsedFilteredMovies);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    const savedFilteredMovies = localStorage.getItem("filteredMovies");
+    if (savedFilteredMovies) {
+      const parsedFilteredMovies = JSON.parse(savedFilteredMovies);
+      setFilteredMovies(parsedFilteredMovies);
+      // Also update the allMovies state to reflect the filtered movies
+      setAllMovies(parsedFilteredMovies);
+    }
+  }, []); // Run only on component mount
 
   // Fetch genres
   const url = "https://api.themoviedb.org/3/genre/movie/list?language=en-US";
@@ -153,9 +176,7 @@ export const Movie = ({ children }: { children: React.ReactNode }) => {
     fetch(url, options)
       .then((res) => res.json())
       .then((json) => setGenres(json.genres))
-      // .then((json) => console.log(json.genres))
       .catch((err) => console.error("Error fetching genres:", err));
-      // console.log(json.genr);
   }, []);
 
   // Fetch movies
@@ -169,22 +190,41 @@ export const Movie = ({ children }: { children: React.ReactNode }) => {
     },
   };
 
-  useEffect(() => {
-    fetch(movieUrl, myOptions)
-      .then((res) => res.json())
-      .then((json) => setAllMovies(json.results))
-      .catch((err) => console.error("Error fetching movies:", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch(movieUrl, myOptions)
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       if (allMovies.length === 0) {
+  //         setAllMovies(json.results);
+  //       }
+  //     })
+  //     .catch((err) => console.error("Error fetching movies:", err));
+  // }, [allMovies]);
 
+  useEffect(() => {
+    if (isLoadingMovies) {
+      fetch(movieUrl, myOptions)
+        .then((res) => res.json())
+        .then((json) => {
+          setAllMovies(json.results);
+          setIsLoadingMovies(false);
+        })
+        .catch((err) => console.error("Error fetching movies:", err));
+    }
+  }, [isLoadingMovies]);
+
+  //filtering the genres
   const filteredGenres = genres.filter((gen) =>
     gen.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
+  //fitler movies based on the genres
   const filterMoviesByGenre = (genreId: number) => {
     const moviesByGenre = allMovies.filter((movie) =>
       movie.genre_ids.includes(genreId)
     );
     setFilteredMovies(moviesByGenre);
+    localStorage.setItem("filteredMovies", JSON.stringify(moviesByGenre));
   };
 
   return (

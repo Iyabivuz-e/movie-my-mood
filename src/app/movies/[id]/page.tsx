@@ -54,6 +54,11 @@ const MyMovies = ({ params }: { params: { id: string } }) => {
               <div className="card-body">
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">{movie.overview}</p>
+                <div className="flex gap-2">
+                  <button className="btn px-3 py-0 btn-outline">Default</button>
+                  <button className="btn px-3 py-0 btn-outline">Default</button>
+                  <button className="btn px-3 py-0 btn-outline">Default</button>
+                </div>
               </div>
             </div>
           ))}

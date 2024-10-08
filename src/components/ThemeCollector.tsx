@@ -3,30 +3,43 @@
 import React, { useEffect, useState } from "react";
 
 const ThemeCollector = () => {
-  const [theme, setTheme] = useState<string>(
-    localStorage.getItem("theme") || "dark"
-  );
+  
+  // Initially set to undefined, will be updated once we check for localStorage
+  const [theme, setTheme] = useState<string | undefined>(undefined);
 
-  //function to handle theme change
+  // Fetch theme from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      setTheme(savedTheme);
+      document.querySelector("html")?.setAttribute("data-theme", savedTheme);
+    }
+  }, []);
+
+  // Handle theme change
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
-    setTheme(isChecked ? "cupcake" : "dark");
+    const newTheme = isChecked ? "cupcake" : "dark";
+    setTheme(newTheme);
   };
 
-  //useEffect the trigger the theme change when the component mounts
+  // Update localStorage and document when the theme changes
   useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme: string | null = localStorage.getItem("theme");
-    localTheme
-      ? document.querySelector("html")?.setAttribute("data-theme", localTheme)
-      : null;
+    if (theme) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("theme", theme);
+        document.querySelector("html")?.setAttribute("data-theme", theme);
+      }
+    }
   }, [theme]);
-
+  
+  
   return (
     <div className="fixed top-2/4 right-1 rounded-full flex justify-center items-center text-center w-[40px] h-[120px]">
       <label className="grid cursor-pointer place-items-center rotate-90">
         <input
           onChange={handleThemeChange}
+          checked={theme === "cupcake" }
           type="checkbox"
           value="synthwave"
           className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1"
